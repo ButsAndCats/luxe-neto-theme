@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="keywords" content="[%url_info name:'meta_keywords'/%]"/>
+<meta name="description" content="[%url_info name:'meta_description'/%]"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0"/>
+<meta property="og:image" content="[%if [@config:current_page_type@] eq 'product'%][@config:homeurl@][%asset_url type:'product' id:'[@SKU@]' thumb:'full'/%][%ELSEIF [@config:current_page_type@] eq 'content'%][@config:homeurl@][%ASSET_url type:'content' id:'[@content_id@]' default:'/assets/website_logo.png'%][%/ASSET_url%][%ELSE%][@config:homeurl@]/assets/website_logo.png[%/if%]"/>
+<meta property="og:title" content="[%url_info name:'page_title'/%]"/>
+<meta property="og:site_name" content="[@config:website_name@]"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="[@config:homeurl@][@config:canonical_url@]"/>
+<meta property="og:description" content="[%url_info name:'meta_description'/%]"/>
+[@config:GOOGLE_VERIFICATION_CODE@]
+<title>[%url_info name:'page_title'/%]</title>
+<link rel="canonical" href="[@config:canonical_url@]"/>
+<link rel="shortcut icon" href="[@config:homeurl@]/assets/favicon_logo.png"/>
+<link class="theme-selector" rel="stylesheet" type="text/css" href="[%ntheme_asset%]css/app.css[%/ntheme_asset%]" media="all"/>
+<link rel="stylesheet" type="text/css" href="[%ntheme_asset%]css/style.css[%/ntheme_asset%]" media="all"/>
+<link rel="stylesheet" href="[%ntheme_asset%]fonts/FuturaW01Light.woff[%/ntheme_asset%]" type="text/css">
+<link rel="stylesheet" href="[%ntheme_asset%]fonts/FuturaW01Medium.woff[%/ntheme_asset%]" type="text/css">
+<link rel="stylesheet" href="[%ntheme_asset%]fonts/FuturaW01Heavy.woff[%/ntheme_asset%]" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script type="text/javascript" src="[%ntheme_asset%]js/responsiveHeader.js[%/ntheme_asset%]"></script>
+[%cdn_asset html:'1' type:'css' domain:'maxcdn.bootstrapcdn.com' library:'font-awesome' version:'4.4.0'%]css/font-awesome.min.css[%/cdn_asset%]
+[%cdn_asset html:'1' type:'css' library:'jquery_ui' version:'1.11.1'%]css/custom-theme/jquery-ui-1.8.18.custom.css[%/cdn_asset%]
+[%cdn_asset html:'1' type:'css' library:'fancybox' version:'2.1.5'%]jquery.fancybox.css[%/cdn_asset%]
+<!--[if lte IE 8]>
+	[%cdn_asset html:'1' type:'js' library:'html5shiv' version:'3.7.0'%]html5shiv.js[%/cdn_asset%]
+	[%cdn_asset html:'1' type:'js' library:'respond.js' version:'1.3.0'%]respond.min.js[%/cdn_asset%]
+<![endif]-->
+[%tracking_code type:'Declaration'/%]
+</head>
+<body id="n_[@config:current_page_type@]" class="n_[@CONFIG:TEMPLATELANG@]">
+<div class="header-fixed" id="header-fixed"><!--- This has jQuery located in /js/custom.js applied to it to make it responsive. !--->
+<div class="container">
+		<div class="row" id="nav-row">
+			<div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4 text-center wrapper-logo">
+				<a href="[@config:homeurl@]" title="[@config:company_name@]">
+					<img class="logo" src="[@config:imageurl@]/website_logo.png" alt="[@config:company_name@]"/>
+				</a>
+			</div>
+            <div class="hidden-xs col-sm-4 text-right header-menu">
+            	<a data-toggle="collapse" data-target="#search-bar"><i class="fa fa-search header-icon" aria-hidden="true"></i></a>
+                <a href="/_myacct/"><i class="fa fa-user header-icon"></i></a>
+  				<a href="[%url page:'cart'/%]" class="dropdown-toggle navbar-right dropdown dropdown-hover" data-toggle="dropdown"><i class="fa fa-shopping-cart header-icon"></i></a>
+					<ul class="dropdown-menu">
+						<li class="box">
+							<div class="body padding" id="cartcontents"></div>
+							<div class="footer"></div>
+						</li>
+					</ul>
+            </div>
+            <div class="col-xs-12 col-md-4 col-md-offset-4 collapse" id="search-bar">
+            <form class="topbar--wrap--form" name="productsearch" method="get" action="/">
+				<input type="hidden" name="rf" value="kw"/>
+				<input class="form-control ajax_search header-search" value="[%nohtml%][%filter ID:'keywords'%][%/filter%][%/nohtml%]" placeholder="Looking for something?" id="name_search" autocomplete="off" name="kw" type="text" autofocus/>
+				</form>
+            </div>
+		</div>
+	</div>
+<div class="navbar navbar-default">
+	<div class="container">
+		<div class="navbar-header">
+			<ul class="navigation-list list-inline visible-xs nMobileNav">
+				<li><a href="#" class="nToggleMenu" data-target=".navbar-responsive-collapse"><span class="icon"><i class="fa fa-bars"></i></span><br>
+				Menu</a></li>
+				<li><a href="/products"><span class="icon"><i class="fa fa-gift"></i></span><br>
+				Shop</a></li>
+				<li><a href="[%url page:'checkout' type:'cart'/%]"><span class="icon"><i class="fa fa-shopping-cart"></i></span><br>
+				Cart (<span rel="a2c_item_count">[%format type:'number' dp:'0'%][%CART id:'total_items'%][%/CART%][%/format%]</span>)</a></li>
+				<li><a href="/_myacct/"><span class="icon"><i class="fa fa-user"></i></span><br>
+				Account</a></li>
+			</ul>
+		</div>
+		<div class="navbar-collapse collapse navbar-responsive-collapse">
+			<ul class="nav navbar-nav">
+            				<li><a href="[%url type:'home'/%]">Home</a></li>
+				[%cache type:'cmenu' id:'header-category-menu'%]
+					[%categorymenu sortby:'sortorder,name' show_empty:'1'%]
+						[%param *level_1%]
+							<li class="[%if [@next_level@]%]dropdown dropdown-hover[%/if%]"><a href="[@url@]" [%if [@next_level@]%]class="dropdown-toggle"[%/if%]>[@name@]</a>
+								[%if [@next_level@]%]
+									<ul class="dropdown-menu">
+										[@next_level@]
+									</ul>
+								[%/if%]
+							</li>
+							[%/param%]
+						[%param *level_2%]
+							<li class="[%if [@next_level@]%]dropdown dropdown-hover[%/if%]"> <a href="[@url@]" class="nuhover dropdown-toggle">[@name@]</a>
+								[%if [@next_level@]%]
+									<ul class="dropdown-menu dropdown-menu-horizontal">
+										[@next_level@]
+									</ul>
+								[%/if%]
+							</li>
+							[%/param%]
+						[%param *level_3%]
+							<li class="[%if [@next_level@]%]dropdown dropdown-hover[%/if%]"> <a href="[@url@]">[@name@]</a>
+								[%if [@next_level@]%]
+									<ul class="dropdown-menu dropdown-menu-horizontal">
+										[@next_level@]
+									</ul>
+								[%/if%]
+							</li>
+						[%/param%]
+					[%/categorymenu%]
+				[%/cache%]
+			</ul>
+		</div>
+	</div>
+</div>
+</div>
+[%if [@config:current_page_type@] ne 'home' %]
+<div  id="main-content" role="main" class="fluid-container">
+	<div class="row">
+[%/if%]

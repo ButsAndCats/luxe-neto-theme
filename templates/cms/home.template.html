@@ -1,0 +1,65 @@
+<div id="main-content">
+    [%advert type:'text' template:'tedcarousel' limit:'10' ad_group:'newarrivalsbanner'%]
+        [%param *header%]
+            <div id="homepageCarousel" class="carousel slide">
+                [%if [@total_showing@] > 1%]
+                    <ol class="carousel-indicators">
+                        [%site_value id:'counter' type:'load'/%]
+                    </ol>
+                [%/if%]
+                <div class="carousel-inner">
+        [%/param%]
+        [%param *footer%]
+                </div>
+                [%if [@total_showing@] > 1%]
+                    <a class="left carousel-control" href="#homepageCarousel" data-slide="prev">
+                        <span class="fa fa-chevron-left"></span>
+                    </a>
+                    <a class="right carousel-control" href="#homepageCarousel" data-slide="next">
+                        <span class="fa fa-chevron-right"></span>
+                    </a>
+                [%/if%]
+            </div>
+        [%/param%]
+        [%param *ifempty%]
+            <a class="neto-placeholder neto-placeholder-rotator btn-loads" data-loading-text="<i class='fa fa-spinner fa-spin' style='font-size: 14px'></i>" href="[@config:home_url@]/_cpanel?item=adw&page=view&id=New&plan_id=1">
+                Click to add a banner<br/>
+            </a>
+        [%/param%]
+    [%/advert%]
+	[%thumb_list type:'content' content_type:'category' template:'tedcategories'  show_level:'1' sortby:'sortorder,name' show_empty:'1' limit:'4'%]
+		[%param header%]
+			<div class="row home-row">
+		[%/param%]
+		[%param footer%]
+			</div>
+			<div class="row"><div class="col-xs-12"><hr></div></div>
+		[%/param%]
+	[%end thumb_list%]
+	<div class="row">
+		<div class="col-xs-12">
+			<div id="homepage-content">[@page_content@]</div>
+			[%if [@config:show_home_ads@]%]
+				[%advert type:'product' limit:'8' template:'' ad_group:''%]
+					[%param *header%]
+						<hr />
+						<div class="row">
+					[%/param%]
+					[%param footer%]
+						</div>
+					[%/param%]
+					[%param *ifempty%]
+						[%random_products category:'0' template:'' limit:'8'%]
+							[%param *header%]
+								<hr />
+								<div class="row">
+							[%/param%]
+							[%param *footer%]
+								</div>
+							[%/param%]
+						[%/random_products%]
+					[%/param%]
+				[%/advert%]
+			[%/if%]
+		</div>
+<!-- container & row closed in footer -->

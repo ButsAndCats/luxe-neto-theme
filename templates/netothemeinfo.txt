@@ -1,1 +1,14 @@
-
+type
+website
+----------
+name
+Storefront
+----------
+version
+5
+----------
+install_description
+<p></p>
+----------
+description
+<h1>Storefront</h1>
